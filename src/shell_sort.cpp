@@ -22,14 +22,11 @@ std::vector<long long> shell_sort(std::vector<int> data){
     int comparisons = 0;
     int time = 0;
     auto begin = std::chrono::system_clock::now();
-    for(int i = 0; i < gaps.size(); i++)
-    {
-        for(int j = gaps[i]; j < data.size(); j++)
-        {
+    for(int i = 0; i < gaps.size(); i++){
+        for(int j = gaps[i]; j < data.size(); j++){
             int temp = data[j];
             int k = j;
-            while(k >= gaps[i] && data[k - gaps[i]] > temp)
-            {
+            while(k >= gaps[i] && data[k - gaps[i]] > temp){
                 results[0]++;
                 results[1]++;
                 data[k] = data[k - gaps[i]];
