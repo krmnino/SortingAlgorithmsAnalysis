@@ -1,4 +1,3 @@
-
 #include <chrono>
 #include <vector>
 
@@ -42,18 +41,18 @@ static void qsort(std::vector<int> a, int lo, int hi, std::vector<long long> res
 
   swap(a, k, hi);
   results[0]++;                         // Put pivot in place
-  qsort(a, lo, k - 1);  // Sort left partition
-  qsort(a, k + 1, hi);  // Sort right partition
+  qsort(a, lo, k - 1, results);  // Sort left partition
+  qsort(a, k + 1, hi, results);  // Sort right partition
 
 }
 
 /** sort a [0, n) */
-std::vector<long long> quickSort(std::vector<int> a){
+std::vector<long long> quick_sort(std::vector<int> a){
   int n = a.size();
   std::vector<long long> results;
   results.resize(3);
   auto begin = std::chrono::system_clock::now();
-  qsort(a, 0, n - 1, begin, results);
+  qsort(a, 0, n - 1, results);
   auto finish = std::chrono::system_clock::now();
 	std::chrono::duration<double> delta_time = finish - begin;
   //Time in milliseconds

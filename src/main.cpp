@@ -27,6 +27,7 @@ int main() {
 	
 	//std::chrono::milliseconds timespan(1000);
 	//std::this_thread::sleep_for(timespan);
+	/**/
 	std::vector<long long> shell_sort_results = shell_sort(data);
 	for(int i = 0; i < shell_sort_results.size(); i++){
 		cout << shell_sort_results[i] << endl;
