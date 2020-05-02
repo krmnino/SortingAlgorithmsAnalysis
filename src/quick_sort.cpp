@@ -17,7 +17,7 @@ static int findPivot(std::vector<int> a, int i, int j){
  *  right sub-array, returning index of first position in right
  *  sub-array
  */
-static int partition(int a[], int lo, int hi, int pivot){
+static int partition(std::vector<int> a, int lo, int hi, int pivot, std::vector<long long> results){
   while (lo <= hi) { //while interval is non-empty
     while (a[lo] < pivot) {
       //this loop will not run off the end of the array
@@ -25,19 +25,23 @@ static int partition(int a[], int lo, int hi, int pivot){
       ++lo;
     }
     while ((hi >= lo) && (a[hi] >= pivot)) --hi;
+    results[1]++;
     if (hi > lo) swap(a, lo, hi); //swap out-of-place values
   }
   return lo;            // Return first position in right partition
 }
 
 /** sort a [lo, hi] */
-static void qsort(std::vector<int> a, int lo, int hi){
+static void qsort(std::vector<int> a, int lo, int hi, std::vector<long long> results){
   if (hi - lo < 1) return;
   int pivotindex = findPivot(a, lo, hi);  // Pick a pivot
-  swap(a, pivotindex, hi);           // Stick pivot at end
+  swap(a, pivotindex, hi);
+  results[0]++;           // Stick pivot at end
   // k will be the first position in the right subarray
-  int k = partition(a, lo, hi-1, a[hi]);
-  swap(a, k, hi);                        // Put pivot in place
+  int k = partition(a, lo, hi-1, a[hi], results);
+
+  swap(a, k, hi);
+  results[0]++;                         // Put pivot in place
   qsort(a, lo, k - 1);  // Sort left partition
   qsort(a, k + 1, hi);  // Sort right partition
 
@@ -49,7 +53,7 @@ std::vector<long long> quickSort(std::vector<int> a){
   std::vector<long long> results;
   results.resize(3);
   auto begin = std::chrono::system_clock::now();
-  qsort(a, 0, n - 1, begin);
+  qsort(a, 0, n - 1, begin, results);
   auto finish = std::chrono::system_clock::now();
 	std::chrono::duration<double> delta_time = finish - begin;
   //Time in milliseconds
