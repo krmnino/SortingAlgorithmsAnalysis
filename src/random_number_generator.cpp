@@ -15,6 +15,7 @@ void random_number_file_generator(string name_header, unsigned long long lower_b
 	}
 }
 
+
 void random_number_generator(ofstream& out_file, int upper_bound) {
 	chrono::time_point<chrono::system_clock> now = chrono::system_clock::now();
 	auto duration = now.time_since_epoch();

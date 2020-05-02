@@ -8,7 +8,7 @@ static void swap(std::vector<int> a, int i, int j){
   a[i] = a[j];
   a[j] = t;
 }
-std::vector<long long> bubbleSort(std::vector<int> a){
+std::vector<long long> bubble_sort(std::vector<int> a){
   int n = a.size();
   //index 0 = swaps; index 1 = comparisons; index 2 = time;
   std::vector<long long> results;
