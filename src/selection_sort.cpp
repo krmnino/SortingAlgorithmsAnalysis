@@ -3,7 +3,7 @@
 
 #include "data_sorting.h"
 
-std::vector<long long> radix_sort(std::vector<int> data){
+std::vector<long long> selection_sort(std::vector<int> data){
     //index 0 = swaps; index 1 = comparisons; index 2 = time;
     std::vector<long long> results;
     results.resize(3);

@@ -19,7 +19,7 @@ int main() {
 	//random_number_file_generator("dataset3_", 10, 20, 5);
 
 	
-        std::ifstream file("dataset2_10.dat");
+        std::ifstream file("dataset2_10000.dat");
 	std::vector<int> data;
     int value;
     while(file >> value){
