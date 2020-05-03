@@ -46,7 +46,7 @@ static bool sort_vec_tuple(const tuple<int, string>& a, const tuple<int, string>
 }
 
 static void command_line(){
-	string commands[] = {"generate", "run", "show_res", "save_res", "save_all_res", "delete_res", "set_path", "show_path", "help", "clear", "exit"};
+	string commands[] = {"generate", "run", "show_res", "save_res", "save_all_res", "delete_res", "set_path", "show_path", "help", "plot", "clear", "exit"};
 	vector<vector<long long>> bubble_results;
 	vector<vector<long long>> insertion_results;
 	vector<vector<long long>> selection_results;
@@ -552,6 +552,10 @@ static void command_line(){
 		if(parsed_string[0] == "show_path"){
 			cout << "Path: " << directory_path << endl;
 			continue;
+		}
+		if(parsed_string[0] == "plot"){
+			system("python3 graph.py");	
+			continue;	
 		}	
 		if(parsed_string[0] == "clear"){
 			system("clear");
