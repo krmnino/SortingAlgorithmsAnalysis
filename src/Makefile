@@ -1,17 +1,19 @@
+CXX = g++
+
 CXXFLAGS = -std=c++17 -g
 
-DEPS =	random_number_generator.cpp shell_sort.cpp quick_sort.cpp bubble_sort.cpp insertion_sort.cpp selection_sort.cpp merge_sort.cpp
+DEPS =	random_number_generator.cpp shell_sort.cpp quick_sort.cpp bubble_sort.cpp insertion_sort.cpp selection_sort.cpp radix_sort.cpp merge_sort.cpp
 
-OBJS =	random_number_generator.o shell_sort.o quick_sort.o bubble_sort.o insertion_sort.o selection_sort.o merge_sort.o
+OBJS =	random_number_generator.o shell_sort.o quick_sort.o bubble_sort.o insertion_sort.o selection_sort.o radix_sort.o merge_sort.o
 
 data-sorting: main.o $(OBJS)
-	g++ main.o $(OBJS) -o data-sorting
+	$(CXX) $(CXXFLAGS) main.o $(OBJS) -o data-sorting -lstdc++fs
 
 main.o: main.cpp
-	g++ -c $(CXXFLAGS) main.cpp
+	$(CXX) -c $(CXXFLAGS) main.cpp -lstdc++fs
 
 $(OBJS): $(DEPS)
-	g++ -c $(CXXFLAGS) $(DEPS)
+	$(CXX) -c $(CXXFLAGS) $(DEPS) 
 
 clean:
 	rm -f *.o data-sorting
