@@ -46,7 +46,7 @@ static bool sort_vec_tuple(const tuple<int, string>& a, const tuple<int, string>
 }
 
 static void command_line(){
-	string commands[] = {"generate", "run", "show_res", "save_res", "save_all_res", "delete_res", "set_path", "show_path", "help", "plot", "clear", "exit"};
+	string commands[] = {"generate", "run", "show_res", "save_res", "save_all_res", "delete_res", "set_path", "show_path", "help", "clear", "exit"};
 	vector<vector<long long>> bubble_results;
 	vector<vector<long long>> insertion_results;
 	vector<vector<long long>> selection_results;
@@ -54,10 +54,10 @@ static void command_line(){
 	vector<vector<long long>> merge_results;
 	vector<vector<long long>> quick_results;
 	vector<vector<long long>> radix_results;
-	//string directory_path = "";
-	string directory_path = "/home/ebreban1/Cs240-Group-Project/sample_data"; //////////////////////////////////////////////////
+	string directory_path = "";
 	string input = "";
 	vector<string> parsed_string;
+	cout << "Algorithm Performance Test Program\nAuthors: Ethan Breban, Korhan Citlak, Kurt Manrique-Nino." << endl;
 	while(true){
 		cout << ">> ";
 		getline(std::cin, input);
@@ -71,15 +71,31 @@ static void command_line(){
 			continue;
 		}
 		if(parsed_string[0] == "help"){
-			cout << "generate" << endl;
-			cout << "run" << endl;
-			cout << "show_res" << endl;
-			cout << "show_res" << endl;
-			cout << "exit" << endl;
+			cout << "generate 			Generates dataset within a given range with random values" << endl;
+			cout << "					Usage: generate [lower_bound] [upper_bound] [increment_factor];" << endl;
+			cout << "run				Test all algorithms using generated datasets" << endl;
+			cout << "					Usage: run;" << endl;
+			cout << "show_res			Display performance resuls of a specific algorithm." << endl;
+			cout << "					Usage: show_res [SORT_RESULTS_FLAG];" << endl;
+			cout << "save_res			Save performance resuls of a specific algorithm given a directory path." << endl;
+			cout << "					Usage: save_res [SORT_RESULTS_FLAG] [FULL_DIRECTORY_PATH];" << endl;
+			cout << "save_all_res			Save performance resuls of all algorithm given a directory path." << endl;
+			cout << "					Usage: save_res [FULL_DIRECTORY_PATH];" << endl;
+			cout << "delete_res			Deletes ALL performance results." << endl;
+			cout << "					Usage: delete_res;" << endl;
+			cout << "set_path			Set directory path where the program will read/write datasets" << endl;
+			cout << "					Usage: set_path [FULL_DIRECTORY_PATH];" << endl;
+			cout << "show_path			Show directory path where the program will read/write datasets" << endl;
+			cout << "					Usage: show_path;" << endl;
+			cout << "help				Display program menu with command definitions." << endl; 
+			cout << "					Usage: help;" << endl;
+			cout << "exit				Exit the program." << endl;
+			cout << "					Usage: exit;" << endl;
+
 		}
 		if(parsed_string[0] == "generate"){
 			if(parsed_string.size() != 4){
-				cout << "Usage: generate [lower bound] [upper_bound] [factor];" << endl;
+				cout << "Usage: generate [lower bound] [upper_bound] [increment_factor];" << endl;
 				continue;
 			}
 			else if(directory_path == ""){
@@ -199,7 +215,7 @@ static void command_line(){
 		}
 		if(parsed_string[0] == "show_res"){
 			if(parsed_string.size() != 2){
-				cout << "Usage: show_res [SORT_RESULTS_FLAG]" << endl;
+				cout << "Usage: show_res [SORT_RESULTS_FLAG];" << endl;
 				cout << "SORT_RESULTS_FLAG indicates which sorting algorithm must be printed" << endl;
 				cout << "0: Bubble sort" << endl;
 				cout << "1: Insertion sort" << endl;
@@ -307,7 +323,7 @@ static void command_line(){
 		}
 		if(parsed_string[0] == "save_res"){
 			if(parsed_string.size() != 3){
-				cout << "Usage: save_res [SORT_RESULTS_FLAG] [FULL_DIRECTORY_PATH]" << endl;
+				cout << "Usage: save_res [SORT_RESULTS_FLAG] [FULL_DIRECTORY_PATH];" << endl;
 				cout << "SORT_RESULTS_FLAG indicates which sorting algorithm must be printed" << endl;
 				cout << "0: Bubble sort" << endl;
 				cout << "1: Insertion sort" << endl;
@@ -347,10 +363,10 @@ static void command_line(){
 				continue;
 			}
 			string sort_name = "";
-			string out = "Sort,Swaps,Comparisons,Time(ms)\n";
+			string out = "Size,Swaps,Comparisons,Time(ms)\n";
 			switch(stoi(parsed_string[1])){
 				case 0:
-				sort_name = "bubble_sort";
+				sort_name = "/bubble_sort";
 				for(int i = 0; i < bubble_results.size(); i++){
 					for(int j = 0; j < bubble_results[i].size(); j++){
 						out += to_string(bubble_results[i][j]) + ",";
@@ -359,7 +375,7 @@ static void command_line(){
 				}
 				break;
 				case 1:
-				sort_name = "insertion_sort";
+				sort_name = "/insertion_sort";
 				for(int i = 0; i < insertion_results.size(); i++){
 					for(int j = 0; j < insertion_results[i].size(); j++){
 						out += to_string(insertion_results[i][j]) + ",";
@@ -368,7 +384,7 @@ static void command_line(){
 				}
 				break;
 				case 2:
-				sort_name = "selection_sort";
+				sort_name = "/selection_sort";
 				for(int i = 0; i < selection_results.size(); i++){
 					for(int j = 0; j < selection_results[i].size(); j++){
 						out += to_string(selection_results[i][j]) + ",";
@@ -377,7 +393,7 @@ static void command_line(){
 				}
 				break;
 				case 3:
-				sort_name = "shell_sort";
+				sort_name = "/shell_sort";
 				for(int i = 0; i < shell_results.size(); i++){
 					for(int j = 0; j < shell_results[i].size(); j++){
 						out += to_string(shell_results[i][j]) + ",";
@@ -386,7 +402,7 @@ static void command_line(){
 				}
 				break;
 				case 4:
-				sort_name = "merge_sort";
+				sort_name = "/merge_sort";
 				for(int i = 0; i < merge_results.size(); i++){
 					for(int j = 0; j < merge_results[i].size(); j++){
 						out += to_string(merge_results[i][j]) + ",";
@@ -395,7 +411,7 @@ static void command_line(){
 				}
 				break;
 				case 5:
-				sort_name = "quick_sort";
+				sort_name = "/quick_sort";
 				for(int i = 0; i < quick_results.size(); i++){
 					for(int j = 0; j < quick_results[i].size(); j++){
 						out += to_string(quick_results[i][j]) + ",";
@@ -404,7 +420,7 @@ static void command_line(){
 				}
 				break;
 				case 6:
-				sort_name = "radix_sort";
+				sort_name = "/radix_sort";
 				for(int i = 0; i < radix_results.size(); i++){
 					for(int j = 0; j < radix_results[i].size(); j++){
 						out += to_string(radix_results[i][j]) + ",";
@@ -415,11 +431,10 @@ static void command_line(){
 				default:
 				break;
 			}
-			ofstream file(parsed_string[2] + sort_name + "results.csv");
+			ofstream file(parsed_string[2] + sort_name + "_results.csv");
 			file << out;
 			file.close();
-			
-			cout << "Results saved in: " << parsed_string[2] + sort_name << "results.csv" << endl;
+			cout << "Results saved in: " << parsed_string[2] + sort_name << "_results.csv" << endl;
 			continue;
 		}
 		if(parsed_string[0] == "save_all_res"){
@@ -438,74 +453,74 @@ static void command_line(){
 				continue;
 			}
 			string out = "";
-			out = "Sort,Swaps,Comparisons,Time(ms)\n";
+			out = "Size,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < bubble_results.size(); i++){
 				for(int j = 0; j < bubble_results[i].size(); j++){
 					out += to_string(bubble_results[i][j]) + ",";
 				}
 				if(i != bubble_results.size()-1) out += "\n";
 			}
-			ofstream file0(parsed_string[1] + "bubble_sort_results.csv");
+			ofstream file0(parsed_string[1] + "/bubble_sort_results.csv");
 			file0 << out;
 			file0.close();
-			out = "Sort,Swaps,Comparisons,Time(ms)\n";
+			out = "Size,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < insertion_results.size(); i++){
 				for(int j = 0; j < insertion_results[i].size(); j++){
 					out += to_string(insertion_results[i][j]) + ",";
 				}
 				if(i != insertion_results.size()-1) out += "\n";
 			}
-			ofstream file1(parsed_string[1] + "insertion_sort_results.csv");
+			ofstream file1(parsed_string[1] + "/insertion_sort_results.csv");
 			file1 << out;
 			file1.close();
-			out = "Sort,Swaps,Comparisons,Time(ms)\n";
+			out = "Size,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < selection_results.size(); i++){
 				for(int j = 0; j < selection_results[i].size(); j++){
 					out += to_string(selection_results[i][j]) + ",";
 				}
 				if(i != selection_results.size()-1) out += "\n";
 			}
-			ofstream file2(parsed_string[1] + "selection_sort_results.csv");
+			ofstream file2(parsed_string[1] + "/selection_sort_results.csv");
 			file2 << out;
 			file2.close();
-			out = "Sort,Swaps,Comparisons,Time(ms)\n";
+			out = "Size,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < shell_results.size(); i++){
 				for(int j = 0; j < shell_results[i].size(); j++){
 					out += to_string(shell_results[i][j]) + ",";
 				}
 				if(i != shell_results.size()-1) out += "\n";
 			}
-			ofstream file3(parsed_string[1] + "shell_sort_results.csv");
+			ofstream file3(parsed_string[1] + "/shell_sort_results.csv");
 			file3 << out;
 			file3.close();
-			out = "Sort,Swaps,Comparisons,Time(ms)\n";
+			out = "Size,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < merge_results.size(); i++){
 				for(int j = 0; j < merge_results[i].size(); j++){
 					out += to_string(merge_results[i][j]) + "\t";
 				}
 				if(i != merge_results.size()-1) out += "\n";
 			}
-			ofstream file4(parsed_string[1] + "merge_sort_results.csv");
+			ofstream file4(parsed_string[1] + "/merge_sort_results.csv");
 			file4 << out;
 			file4.close();
-			out = "Sort,Swaps,Comparisons,Time(ms)\n";
+			out = "Size,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < quick_results.size(); i++){
 				for(int j = 0; j < quick_results[i].size(); j++){
 					out += to_string(quick_results[i][j]) + "\t";
 				}
 				if(i != quick_results.size()-1) out += "\n";
 			}
-			ofstream file5(parsed_string[1] + "quick_sort_results.csv");
+			ofstream file5(parsed_string[1] + "/quick_sort_results.csv");
 			file5 << out;
 			file5.close();
-			out = "Sort,Swaps,Comparisons,Time(ms)\n";
+			out = "Size,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < radix_results.size(); i++){
 				for(int j = 0; j < radix_results[i].size(); j++){
 					out += to_string(radix_results[i][j]) + "\t";
 				}
 				if(i != radix_results.size()-1) out += "\n";
 			}
-			ofstream file6(parsed_string[1] + "radix_sort_results.csv");
+			ofstream file6(parsed_string[1] + "/radix_sort_results.csv");
 			file6 << out;
 			file6.close();
 			continue;
@@ -537,11 +552,13 @@ static void command_line(){
 		if(parsed_string[0] == "show_path"){
 			cout << "Path: " << directory_path << endl;
 			continue;
-		}
+		}	
 		if(parsed_string[0] == "clear"){
 			system("clear");
+			continue;
 		}
 		if(parsed_string[0] == "exit"){
+			cout << "Exiting..." << endl;
 			break;
 		}
 	}
