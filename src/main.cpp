@@ -75,7 +75,8 @@ static void command_line(){
 		if(parsed_string[0] == "help"){
 			cout << "generate" << endl;
 			cout << "run" << endl;
-			cout << "results" << endl;
+			cout << "show_res" << endl;
+			cout << "show_res" << endl;
 			cout << "exit" << endl;
 		}
 		if(parsed_string[0] == "generate"){
@@ -298,17 +299,17 @@ static void command_line(){
 				cout << "Invalid input. Sort flag must be integers." << endl;
 				continue;
 			}
-			if(!fs::is_directory(parsed_string[1])){
+			if(!fs::is_directory(parsed_string[2])){
 				cout << parsed_string[1] <<" is not a valid directory path. Try again." << endl;
 				continue;
 			}
-			string out = "Sort,Swaps,Comparisons,Time(ms)\n";
 			if(bubble_results.size() == 0 || insertion_results.size() == 0 ||
 			   selection_results.size() == 0 || shell_results.size() == 0 ||
 			   merge_results.size() == 0 || quick_results.size() == 0 || radix_results.size() == 0){
 				cout << "Result tables are empty. Type 'single_run' to measure sorting algorithms performance." << endl;
 				continue;
 			}
+			string out = "Sort,Swaps,Comparisons,Time(ms)\n";
 			switch(stoi(parsed_string[1])){
 				case 0:
 				for(int i = 0; i < bubble_results.size(); i++){
@@ -374,6 +375,94 @@ static void command_line(){
 			file.close();
 			
 			cout << "Results saved in: " << parsed_string[1] << "results.csv" << endl;
+			continue;
+		}
+		if(parsed_string[0] == "save_all_res"){
+			if(parsed_string.size() != 2){
+				cout << "Usage: save_res [FULL_DIRECTORY_PATH]" << endl;
+				continue;
+			}
+			if(!fs::is_directory(parsed_string[1])){
+				cout << parsed_string[1] <<" is not a valid directory path. Try again." << endl;
+				continue;
+			}
+			if(bubble_results.size() == 0 || insertion_results.size() == 0 ||
+			   selection_results.size() == 0 || shell_results.size() == 0 ||
+			   merge_results.size() == 0 || quick_results.size() == 0 || radix_results.size() == 0){
+				cout << "Result tables are empty. Type 'single_run' to measure sorting algorithms performance." << endl;
+				continue;
+			}
+			string out = "";
+			out = "Sort,Swaps,Comparisons,Time(ms)\n";
+			for(int i = 0; i < bubble_results.size(); i++){
+				for(int j = 0; j < bubble_results[i].size(); j++){
+					out += bubble_results[i][j] + "\t";
+				}
+				if(i != bubble_results.size()-1) out += "\n";
+			}
+			ofstream file0(parsed_string[1] + "bubble_sort_results.csv");
+			file0 << out;
+			file0.close();
+			out = "Sort,Swaps,Comparisons,Time(ms)\n";
+			for(int i = 0; i < insertion_results.size(); i++){
+				for(int j = 0; j < insertion_results[i].size(); j++){
+					out += insertion_results[i][j] + "\t";
+				}
+				if(i != insertion_results.size()-1) out += "\n";
+			}
+			ofstream file1(parsed_string[1] + "insertion_sort_results.csv");
+			file1 << out;
+			file1.close();
+			out = "Sort,Swaps,Comparisons,Time(ms)\n";
+			for(int i = 0; i < selection_results.size(); i++){
+				for(int j = 0; j < selection_results[i].size(); j++){
+					out += selection_results[i][j] + "\t";
+				}
+				if(i != selection_results.size()-1) out += "\n";
+			}
+			ofstream file2(parsed_string[1] + "selection_sort_results.csv");
+			file2 << out;
+			file2.close();
+			out = "Sort,Swaps,Comparisons,Time(ms)\n";
+			for(int i = 0; i < shell_results.size(); i++){
+				for(int j = 0; j < shell_results[i].size(); j++){
+					out += shell_results[i][j] + "\t";
+				}
+				if(i != shell_results.size()-1) out += "\n";
+			}
+			ofstream file3(parsed_string[1] + "shell_sort_results.csv");
+			file3 << out;
+			file3.close();
+			out = "Sort,Swaps,Comparisons,Time(ms)\n";
+			for(int i = 0; i < merge_results.size(); i++){
+				for(int j = 0; j < merge_results[i].size(); j++){
+					out += merge_results[i][j] + "\t";
+				}
+				if(i != merge_results.size()-1) out += "\n";
+			}
+			ofstream file4(parsed_string[1] + "merge_sort_results.csv");
+			file4 << out;
+			file4.close();
+			out = "Sort,Swaps,Comparisons,Time(ms)\n";
+			for(int i = 0; i < quick_results.size(); i++){
+				for(int j = 0; j < quick_results[i].size(); j++){
+					out += quick_results[i][j] + "\t";
+				}
+				if(i != quick_results.size()-1) out += "\n";
+			}
+			ofstream file5(parsed_string[1] + "quick_sort_results.csv");
+			file5 << out;
+			file5.close();
+			out = "Sort,Swaps,Comparisons,Time(ms)\n";
+			for(int i = 0; i < radix_results.size(); i++){
+				for(int j = 0; j < radix_results[i].size(); j++){
+					out += radix_results[i][j] + "\t";
+				}
+				if(i != radix_results.size()-1) out += "\n";
+			}
+			ofstream file6(parsed_string[1] + "radix_sort_results.csv");
+			file6 << out;
+			file6.close();
 			continue;
 		}
 		if(parsed_string[0] == "delete_res"){
