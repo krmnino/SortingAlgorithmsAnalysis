@@ -11,10 +11,10 @@ results explanation:
 - step 2: in command line type ./data-sorting
 - step 3: enter commands as desired
 - Possible Commands (ALL COMMANDS MUST END WITH ";"):
-  generate - Generates dataset within a given range with random values
-	run	- Test all algorithms using generated datasets
-  show_res - Display performance resuls of a specific algorithm
-    Usage: show_res [SORT_RESULTS_FLAG];
+- generate - Generates dataset within a given range with random values
+- - run - Test all algorithms using generated datasets
+- show_res - Display performance resuls of a specific algorithm
+- - Usage: show_res [SORT_RESULTS_FLAG];
   save_res - Save performance resuls of a specific algorithm given a directory path
     Usage: save_res [SORT_RESULTS_FLAG] [FULL_DIRECTORY_PATH];
   save_all_res - Save performance resuls of all algorithm given a directory path
