@@ -24,9 +24,6 @@ insertion_sort(std::vector<int> data)
 	  results[1]++;
     }
   }
-  for(int i = 0; i <data.size(); i++){
-    std::cout<< data[i] << std::endl;
-  }
   auto finish = std::chrono::system_clock::now();
   std::chrono::duration<double> delta_time = finish - begin;
   //Time in milliseconds
