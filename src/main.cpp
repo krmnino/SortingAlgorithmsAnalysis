@@ -1,8 +1,6 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <chrono>
-#include <thread>
 #include <filesystem>
 #include <bits/stdc++.h>
 
@@ -57,7 +55,7 @@ static void command_line(){
 	vector<vector<long long>> quick_results;
 	vector<vector<long long>> radix_results;
 	//string directory_path = "";
-	string directory_path = "/home/ebreban1/Cs240-Group-Project/sample_data"; //////////////////////////////////////////////////
+	string directory_path = "/home/kurt/temporary/sets"; //////////////////////////////////////////////////
 	string input = "";
 	vector<string> parsed_string;
 	while(true){
@@ -122,12 +120,29 @@ static void command_line(){
 			quick_results.clear();
 			radix_results.clear();
 			vector<tuple<int, string>> file_names;
+			bool valid_filenames = true;
 			for (auto& entry : fs::directory_iterator(directory_path)) {
-				string path = entry.path().string();
-				string size_str = path.substr(path.find_last_of('/') + 1);
+				string path;
+				string size_str;
+				try{
+					path = entry.path().string();
+					size_str = path.substr(path.find_last_of('/') + 1);
+					size_str = size_str.erase(size_str.find('.'));
+					stoi(size_str);
+				}
+				catch(exception e){
+					valid_filenames = false;
+					break;
+				}
+				path = entry.path().string();
+				size_str = path.substr(path.find_last_of('/') + 1);
 				size_str = size_str.erase(size_str.find('.'));
-				int size = stoi(size_str);
-				file_names.push_back(make_tuple(size, path));
+				stoi(size_str);
+				file_names.push_back(make_tuple(stoi(size_str), path));
+			}
+			if(!valid_filenames){
+				cout << directory_path << "must contain datasets ONLY. Remove any non-compatible files or directories from it." << endl;
+				continue;
 			}
 			sort(file_names.begin(), file_names.end(), sort_vec_tuple);
 			for(int i = 0; i < file_names.size(); i++){
@@ -202,13 +217,24 @@ static void command_line(){
 				cout << "Invalid input. Sort flag must be integers." << endl;
 				continue;
 			}
-			string out_results = "Size | Swaps | Comparisons | Time(ms)\n";
+			if(stoi(parsed_string[1]) > 6){
+				cout << "SORT_RESULTS_FLAG range must be between 0 and 6." << endl;
+				cout << "0: Bubble sort" << endl;
+				cout << "1: Insertion sort" << endl;
+				cout << "2: Selection sort" << endl;
+				cout << "3: Shell sort" << endl;
+				cout << "4: Merge sort" << endl;
+				cout << "5: Quick sort" << endl;
+				cout << "6: Radix sort" << endl;
+				continue;
+			}
 			if(bubble_results.size() == 0 || insertion_results.size() == 0 ||
 			   selection_results.size() == 0 || shell_results.size() == 0 ||
 			   merge_results.size() == 0 || quick_results.size() == 0 || radix_results.size() == 0){
-				cout << "Result tables are empty. Type 'single_run' to measure sorting algorithms performance." << endl;
+				cout << "Result tables are empty. Type 'run' to measure sorting algorithms performance." << endl;
 				continue;
 			}
+			string out_results = "Size | Swaps | Comparisons | Time(ms)\n";
 			switch(stoi(parsed_string[1])){
 				case 0:
 				cout << "Bubble Sort" << endl;
@@ -299,6 +325,17 @@ static void command_line(){
 				cout << "Invalid input. Sort flag must be integers." << endl;
 				continue;
 			}
+			if(stoi(parsed_string[1]) > 6){
+				cout << "SORT_RESULTS_FLAG range must be between 0 and 6." << endl;
+				cout << "0: Bubble sort" << endl;
+				cout << "1: Insertion sort" << endl;
+				cout << "2: Selection sort" << endl;
+				cout << "3: Shell sort" << endl;
+				cout << "4: Merge sort" << endl;
+				cout << "5: Quick sort" << endl;
+				cout << "6: Radix sort" << endl;
+				continue;
+			}
 			if(!fs::is_directory(parsed_string[2])){
 				cout << parsed_string[1] <<" is not a valid directory path. Try again." << endl;
 				continue;
@@ -306,63 +343,71 @@ static void command_line(){
 			if(bubble_results.size() == 0 || insertion_results.size() == 0 ||
 			   selection_results.size() == 0 || shell_results.size() == 0 ||
 			   merge_results.size() == 0 || quick_results.size() == 0 || radix_results.size() == 0){
-				cout << "Result tables are empty. Type 'single_run' to measure sorting algorithms performance." << endl;
+				cout << "Result tables are empty. Type 'run' to measure sorting algorithms performance." << endl;
 				continue;
 			}
+			string sort_name = "";
 			string out = "Sort,Swaps,Comparisons,Time(ms)\n";
 			switch(stoi(parsed_string[1])){
 				case 0:
+				sort_name = "bubble_sort";
 				for(int i = 0; i < bubble_results.size(); i++){
 					for(int j = 0; j < bubble_results[i].size(); j++){
-						out += bubble_results[i][j] + "\t";
+						out += to_string(bubble_results[i][j]) + ",";
 					}
 					if(i != bubble_results.size()-1) out += "\n";
 				}
 				break;
 				case 1:
+				sort_name = "insertion_sort";
 				for(int i = 0; i < insertion_results.size(); i++){
 					for(int j = 0; j < insertion_results[i].size(); j++){
-						out += insertion_results[i][j] + "\t";
+						out += to_string(insertion_results[i][j]) + ",";
 					}
 					if(i != insertion_results.size()-1) out += "\n";
 				}
 				break;
 				case 2:
+				sort_name = "selection_sort";
 				for(int i = 0; i < selection_results.size(); i++){
 					for(int j = 0; j < selection_results[i].size(); j++){
-						out += selection_results[i][j] + "\t";
+						out += to_string(selection_results[i][j]) + ",";
 					}
 					if(i != selection_results.size()-1) out += "\n";
 				}
 				break;
 				case 3:
+				sort_name = "shell_sort";
 				for(int i = 0; i < shell_results.size(); i++){
 					for(int j = 0; j < shell_results[i].size(); j++){
-						out += shell_results[i][j] + "\t";
+						out += to_string(shell_results[i][j]) + ",";
 					}
 					if(i != shell_results.size()-1) out += "\n";
 				}
 				break;
 				case 4:
+				sort_name = "merge_sort";
 				for(int i = 0; i < merge_results.size(); i++){
 					for(int j = 0; j < merge_results[i].size(); j++){
-						out += merge_results[i][j] + "\t";
+						out += to_string(merge_results[i][j]) + ",";
 					}
 					if(i != merge_results.size()-1) out += "\n";
 				}
 				break;
 				case 5:
+				sort_name = "quick_sort";
 				for(int i = 0; i < quick_results.size(); i++){
 					for(int j = 0; j < quick_results[i].size(); j++){
-						out += quick_results[i][j] + "\t";
+						out += to_string(quick_results[i][j]) + ",";
 					}
 					if(i != quick_results.size()-1) out += "\n";
 				}
 				break;
 				case 6:
+				sort_name = "radix_sort";
 				for(int i = 0; i < radix_results.size(); i++){
 					for(int j = 0; j < radix_results[i].size(); j++){
-						out += radix_results[i][j] + "\t";
+						out += to_string(radix_results[i][j]) + ",";
 					}
 					if(i != radix_results.size()-1) out += "\n";
 				}
@@ -370,7 +415,7 @@ static void command_line(){
 				default:
 				break;
 			}
-			ofstream file(parsed_string[1] + "results.csv");
+			ofstream file(sort_name + "results.csv");
 			file << out;
 			file.close();
 			
@@ -389,14 +434,14 @@ static void command_line(){
 			if(bubble_results.size() == 0 || insertion_results.size() == 0 ||
 			   selection_results.size() == 0 || shell_results.size() == 0 ||
 			   merge_results.size() == 0 || quick_results.size() == 0 || radix_results.size() == 0){
-				cout << "Result tables are empty. Type 'single_run' to measure sorting algorithms performance." << endl;
+				cout << "Result tables are empty. Type 'run' to measure sorting algorithms performance." << endl;
 				continue;
 			}
 			string out = "";
 			out = "Sort,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < bubble_results.size(); i++){
 				for(int j = 0; j < bubble_results[i].size(); j++){
-					out += bubble_results[i][j] + "\t";
+					out += to_string(bubble_results[i][j]) + ",";
 				}
 				if(i != bubble_results.size()-1) out += "\n";
 			}
@@ -406,7 +451,7 @@ static void command_line(){
 			out = "Sort,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < insertion_results.size(); i++){
 				for(int j = 0; j < insertion_results[i].size(); j++){
-					out += insertion_results[i][j] + "\t";
+					out += to_string(insertion_results[i][j]) + ",";
 				}
 				if(i != insertion_results.size()-1) out += "\n";
 			}
@@ -416,7 +461,7 @@ static void command_line(){
 			out = "Sort,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < selection_results.size(); i++){
 				for(int j = 0; j < selection_results[i].size(); j++){
-					out += selection_results[i][j] + "\t";
+					out += to_string(selection_results[i][j]) + ",";
 				}
 				if(i != selection_results.size()-1) out += "\n";
 			}
@@ -426,7 +471,7 @@ static void command_line(){
 			out = "Sort,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < shell_results.size(); i++){
 				for(int j = 0; j < shell_results[i].size(); j++){
-					out += shell_results[i][j] + "\t";
+					out += to_string(shell_results[i][j]) + ",";
 				}
 				if(i != shell_results.size()-1) out += "\n";
 			}
@@ -436,7 +481,7 @@ static void command_line(){
 			out = "Sort,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < merge_results.size(); i++){
 				for(int j = 0; j < merge_results[i].size(); j++){
-					out += merge_results[i][j] + "\t";
+					out += to_string(merge_results[i][j]) + "\t";
 				}
 				if(i != merge_results.size()-1) out += "\n";
 			}
@@ -446,7 +491,7 @@ static void command_line(){
 			out = "Sort,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < quick_results.size(); i++){
 				for(int j = 0; j < quick_results[i].size(); j++){
-					out += quick_results[i][j] + "\t";
+					out += to_string(quick_results[i][j]) + "\t";
 				}
 				if(i != quick_results.size()-1) out += "\n";
 			}
@@ -456,7 +501,7 @@ static void command_line(){
 			out = "Sort,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < radix_results.size(); i++){
 				for(int j = 0; j < radix_results[i].size(); j++){
-					out += radix_results[i][j] + "\t";
+					out += to_string(radix_results[i][j]) + "\t";
 				}
 				if(i != radix_results.size()-1) out += "\n";
 			}
