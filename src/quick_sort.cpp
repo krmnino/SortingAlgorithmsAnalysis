@@ -36,7 +36,8 @@ static int partition(std::vector<int>& a, int lo, int hi, std::vector<long long>
 
 /** sort a [lo, hi] */
 static void qsort(std::vector<int>& a, int lo, int hi, std::vector<long long>& results){
-  if (lo < hi)  
+	results[1]++;  
+	if (lo < hi)  
     {  
         /* pi is partitioning index, arr[p] is now  
         at right place */

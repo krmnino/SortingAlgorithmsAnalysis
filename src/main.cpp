@@ -57,7 +57,7 @@ static void command_line(){
 	vector<vector<long long>> quick_results;
 	vector<vector<long long>> radix_results;
 	//string directory_path = "";
-	string directory_path = "/home/kurt/temporary"; //////////////////////////////////////////////////
+	string directory_path = "/home/ebreban1/Cs240-Group-Project/sample_data"; //////////////////////////////////////////////////
 	string input = "";
 	vector<string> parsed_string;
 	while(true){

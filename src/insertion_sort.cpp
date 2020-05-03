@@ -17,7 +17,7 @@ insertion_sort(std::vector<int> data)
     //insert i'th record into sorted portion
     for (int j = i; (j > 0) && (data[j] < data[j - 1]); --j) {
       
-      int x = data[j];
+	  int x = data[j];
       data[i] = data[j-1];
       data[j-1] = x;
 	  results[0]++;

@@ -36,7 +36,6 @@ msort(std::vector<int> &a, int temp[], int lo, int hi,std::vector<long long> &re
       //get smaller value from i2
       a[dest] = temp[i2++];
     }
-    results[0]++;
     results[1]++;
   }   
 }
