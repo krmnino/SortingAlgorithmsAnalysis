@@ -20,8 +20,10 @@ Best Sorting Algorithm(s) for Universities to Use:
   - Selection sort
   - Merge sort
   - Quick sort
-  - Radix sort
-graphical and terminal output (as shown above) was created. Using our output we have determined which sorting algorithms are best for universities of different sizes. The time v size graph shows which sorting algorithm does best with more data and which algorithms efficiency slows as data size increases. The size v swaps & comparisons graph shows how many more computations an algorithm has to do as size increases.
+  - Radix sort 
+<a/>
+Graphical and terminal output (as shown above) was created. Using our output we have determined which sorting algorithms are best for universities of different sizes. The time v size graph shows which sorting algorithm does best with more data and which algorithms efficiency slows as data size increases. The size v swaps & comparisons graph shows how many more computations an algorithm has to do as size increases.
+
 ## How to Execute Program
 - step 1: make
 - step 2: in command line type ./data-sorting
