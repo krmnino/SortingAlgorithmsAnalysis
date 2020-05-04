@@ -5,10 +5,13 @@ The aim of this project is to use multiple sorting algorithms to test their perf
 - Python3
   - matplotlib & numpy
 
-results:
-
-results explanation:
-
+## Results:
+</br> 
+ ![](/data/shell_sort_time_plot.png).        ![](/data/quick_sort_time_plot.png)
+ ![](/data/shell_sort_swaps_comps_plot.png). ![](/data/quick_sort_swaps_comps_plot.png)
+ </br>
+## Results explanation:
+  [Insert Explanation]
 ## How to Execute Program
 - step 1: make
 - step 2: in command line type ./data-sorting
