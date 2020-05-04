@@ -46,7 +46,8 @@ static bool sort_vec_tuple(const tuple<int, string>& a, const tuple<int, string>
 }
 
 static void command_line(){
-	string commands[] = {"generate", "run", "show_res", "save_res", "save_all_res", "delete_res", "set_path", "show_path", "help", "plot", "clear", "exit"};
+	string commands[] = {"generate", "run", "show_res", "save_res", "save_all_res", "delete_res",
+						 "set_path", "show_path", "help", "plot_res", "plot_all_res", "clear", "exit"};
 	vector<vector<long long>> bubble_results;
 	vector<vector<long long>> insertion_results;
 	vector<vector<long long>> selection_results;
@@ -54,10 +55,11 @@ static void command_line(){
 	vector<vector<long long>> merge_results;
 	vector<vector<long long>> quick_results;
 	vector<vector<long long>> radix_results;
-	string directory_path = "";
+	//string directory_path = "";
+	string directory_path = "/home/kurt/temporary/sets/";
 	string input = "";
 	vector<string> parsed_string;
-	cout << "Algorithm Performance Test Program\nAuthors: Ethan Breban, Korhan Citlak, Kurt Manrique-Nino." << endl;
+	cout << "=== Algorithm Performance Test Program ===\nAuthors: Ethan Breban, Korhan Citlak, Kurt Manrique-Nino." << endl;
 	while(true){
 		cout << ">> ";
 		getline(std::cin, input);
@@ -335,7 +337,7 @@ static void command_line(){
 				continue;
 			}
 			try{
-				int temp = stoi(parsed_string[1]);
+				stoi(parsed_string[1]);
 			}				
 			catch(exception e){
 				cout << "Invalid input. Sort flag must be integers." << endl;
@@ -453,76 +455,89 @@ static void command_line(){
 				continue;
 			}
 			string out = "";
+			ofstream file;
 			out = "Size,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < bubble_results.size(); i++){
 				for(int j = 0; j < bubble_results[i].size(); j++){
-					out += to_string(bubble_results[i][j]) + ",";
+					out += to_string(bubble_results[i][j]);
+					if(j != bubble_results[j].size()-1) out += ",";
 				}
 				if(i != bubble_results.size()-1) out += "\n";
 			}
-			ofstream file0(parsed_string[1] + "/bubble_sort_results.csv");
-			file0 << out;
-			file0.close();
+			file.open(parsed_string[1] + "/bubble_sort_results.csv");
+			file << out;
+			file.close();
+
 			out = "Size,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < insertion_results.size(); i++){
 				for(int j = 0; j < insertion_results[i].size(); j++){
-					out += to_string(insertion_results[i][j]) + ",";
+					out += to_string(insertion_results[i][j]);
+					if(j != insertion_results[j].size()-1) out += ",";
 				}
 				if(i != insertion_results.size()-1) out += "\n";
 			}
-			ofstream file1(parsed_string[1] + "/insertion_sort_results.csv");
-			file1 << out;
-			file1.close();
+			file.open(parsed_string[1] + "/insertion_sort_results.csv");
+			file << out;
+			file.close();
+
 			out = "Size,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < selection_results.size(); i++){
 				for(int j = 0; j < selection_results[i].size(); j++){
-					out += to_string(selection_results[i][j]) + ",";
+					out += to_string(selection_results[i][j]);
+					if(j != selection_results[j].size()-1) out += ",";
 				}
 				if(i != selection_results.size()-1) out += "\n";
 			}
-			ofstream file2(parsed_string[1] + "/selection_sort_results.csv");
-			file2 << out;
-			file2.close();
+			file.open(parsed_string[1] + "/selection_sort_results.csv");
+			file << out;
+			file.close();
+
 			out = "Size,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < shell_results.size(); i++){
 				for(int j = 0; j < shell_results[i].size(); j++){
-					out += to_string(shell_results[i][j]) + ",";
+					out += to_string(shell_results[i][j]);
+					if(j != shell_results[j].size()-1) out += ",";
 				}
 				if(i != shell_results.size()-1) out += "\n";
 			}
-			ofstream file3(parsed_string[1] + "/shell_sort_results.csv");
-			file3 << out;
-			file3.close();
+			file.open(parsed_string[1] + "/shell_sort_results.csv");
+			file << out;
+			file.close();
+
 			out = "Size,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < merge_results.size(); i++){
 				for(int j = 0; j < merge_results[i].size(); j++){
-					out += to_string(merge_results[i][j]) + "\t";
+					out += to_string(merge_results[i][j]);
+					if(j != merge_results[j].size()-1) out += ",";
 				}
 				if(i != merge_results.size()-1) out += "\n";
 			}
-			ofstream file4(parsed_string[1] + "/merge_sort_results.csv");
-			file4 << out;
-			file4.close();
+			file.open(parsed_string[1] + "/merge_sort_results.csv");
+			file << out;
+			file.close();
+
 			out = "Size,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < quick_results.size(); i++){
 				for(int j = 0; j < quick_results[i].size(); j++){
-					out += to_string(quick_results[i][j]) + "\t";
+					out += to_string(quick_results[i][j]);
+					if(j != quick_results[j].size()-1) out += ",";
 				}
 				if(i != quick_results.size()-1) out += "\n";
 			}
-			ofstream file5(parsed_string[1] + "/quick_sort_results.csv");
-			file5 << out;
-			file5.close();
+			file.open(parsed_string[1] + "/quick_sort_results.csv");
+			file << out;
+			file.close();
 			out = "Size,Swaps,Comparisons,Time(ms)\n";
 			for(int i = 0; i < radix_results.size(); i++){
 				for(int j = 0; j < radix_results[i].size(); j++){
-					out += to_string(radix_results[i][j]) + "\t";
+					out += to_string(radix_results[i][j]);
+					if(j != radix_results[j].size()-1) out += ",";
 				}
 				if(i != radix_results.size()-1) out += "\n";
 			}
-			ofstream file6(parsed_string[1] + "/radix_sort_results.csv");
-			file6 << out;
-			file6.close();
+			file.open(parsed_string[1] + "/radix_sort_results.csv");
+			file << out;
+			file.close();
 			continue;
 		}
 		if(parsed_string[0] == "delete_res"){
@@ -553,10 +568,263 @@ static void command_line(){
 			cout << "Path: " << directory_path << endl;
 			continue;
 		}
-		if(parsed_string[0] == "plot"){
-			system("python3 graph.py");	
+		if(parsed_string[0] == "plot_res"){
+			//////////////////////////////////////////////////////////////////////////////////////////////////////
+			if(parsed_string.size() != 3){
+				cout << "Usage: plot_res [SORT_RESULTS_FLAG] [FULL_DIRECTORY_PATH];" << endl;
+				cout << "SORT_RESULTS_FLAG indicates which sorting algorithm must be printed" << endl;
+				cout << "0: Bubble sort" << endl;
+				cout << "1: Insertion sort" << endl;
+				cout << "2: Selection sort" << endl;
+				cout << "3: Shell sort" << endl;
+				cout << "4: Merge sort" << endl;
+				cout << "5: Quick sort" << endl;
+				cout << "6: Radix sort" << endl;
+				continue;
+			}
+			try{
+				stoi(parsed_string[1]);
+			}				
+			catch(exception e){
+				cout << "Invalid input. Sort flag must be integers." << endl;
+				continue;
+			}
+			if(stoi(parsed_string[1]) > 6){
+				cout << "SORT_RESULTS_FLAG range must be between 0 and 6." << endl;
+				cout << "0: Bubble sort" << endl;
+				cout << "1: Insertion sort" << endl;
+				cout << "2: Selection sort" << endl;
+				cout << "3: Shell sort" << endl;
+				cout << "4: Merge sort" << endl;
+				cout << "5: Quick sort" << endl;
+				cout << "6: Radix sort" << endl;
+				continue;
+			}
+			if(!fs::is_directory(parsed_string[2])){
+				cout << parsed_string[1] <<" is not a valid directory path. Try again." << endl;
+				continue;
+			}
+			if(bubble_results.size() == 0 || insertion_results.size() == 0 ||
+			   selection_results.size() == 0 || shell_results.size() == 0 ||
+			   merge_results.size() == 0 || quick_results.size() == 0 || radix_results.size() == 0){
+				cout << "Result tables are empty. Type 'run' to measure sorting algorithms performance." << endl;
+				continue;
+			}
+			string out = "";
+			string sort_name;
+			switch(stoi(parsed_string[1])){
+				case 0:
+				sort_name = "/bubble_sort";
+				for(int i = 0; i < bubble_results.size(); i++){
+					for(int j = 0; j < bubble_results[i].size(); j++){
+						out += to_string(bubble_results[i][j]);
+						if(j != bubble_results[j].size()-1) out += ",";
+					}
+					if(i != bubble_results.size()-1) out += "\n";
+				}
+				break;
+				case 1:
+				sort_name = "/insertion_sort";
+				for(int i = 0; i < insertion_results.size(); i++){
+					for(int j = 0; j < insertion_results[i].size(); j++){
+						out += to_string(insertion_results[i][j]);
+						if(j != insertion_results[j].size()-1) out += ",";
+					}
+					if(i != insertion_results.size()-1) out += "\n";
+				}
+				break;
+				case 2:
+				sort_name = "/selection_sort";
+				for(int i = 0; i < selection_results.size(); i++){
+					for(int j = 0; j < selection_results[i].size(); j++){
+						out += to_string(selection_results[i][j]);
+						if(j != selection_results[j].size()-1) out += ",";
+					}
+					if(i != selection_results.size()-1) out += "\n";
+				}
+				break;
+				case 3:
+				sort_name = "/shell_sort";
+				for(int i = 0; i < shell_results.size(); i++){
+					for(int j = 0; j < shell_results[i].size(); j++){
+						out += to_string(shell_results[i][j]);
+						if(j != shell_results[j].size()-1) out += ",";
+					}
+					if(i != shell_results.size()-1) out += "\n";
+				}
+				break;
+				case 4:
+				sort_name = "/merge_sort";
+				for(int i = 0; i < merge_results.size(); i++){
+					for(int j = 0; j < merge_results[i].size(); j++){
+						out += to_string(merge_results[i][j]);
+						if(j != merge_results[j].size()-1) out += ",";
+					}
+					if(i != merge_results.size()-1) out += "\n";
+				}
+				break;
+				case 5:
+				sort_name = "/quick_sort";
+				for(int i = 0; i < quick_results.size(); i++){
+					for(int j = 0; j < quick_results[i].size(); j++){
+						out += to_string(quick_results[i][j]);
+						if(j != quick_results[j].size()-1) out += ",";
+					}
+					if(i != quick_results.size()-1) out += "\n";
+				}
+				break;
+				case 6:
+				sort_name = "/radix_sort";
+				for(int i = 0; i < radix_results.size(); i++){
+					for(int j = 0; j < radix_results[i].size(); j++){
+						out += to_string(radix_results[i][j]);
+						if(j != radix_results[j].size()-1) out += ",";
+					}
+					if(i != radix_results.size()-1) out += "\n";
+				}
+				break;
+				default:
+				break;
+			}
+			ofstream file(parsed_string[2] + sort_name + ".csv");
+			file << out;
+			file.close();
+			string launch_python = "python3 graph.py";
+			launch_python += " " + parsed_string[1];
+			launch_python += " " + parsed_string[2] + sort_name + ".csv";
+			system(launch_python.c_str());
 			continue;	
 		}	
+		if(parsed_string[0] == "plot_all_res"){
+			if(parsed_string.size() != 2){
+				cout << "Usage: plot_all [FULL_DIRECTORY_PATH]" << endl;
+				continue;
+			}
+			if(!fs::is_directory(parsed_string[1])){
+				cout << parsed_string[1] <<" is not a valid directory path. Try again." << endl;
+				continue;
+			}
+			if(bubble_results.size() == 0 || insertion_results.size() == 0 ||
+			   selection_results.size() == 0 || shell_results.size() == 0 ||
+			   merge_results.size() == 0 || quick_results.size() == 0 || radix_results.size() == 0){
+				cout << "Result tables are empty. Type 'run' to measure sorting algorithms performance." << endl;
+				continue;
+			}
+			string out = "";
+			ofstream file;
+			string launch_python = "";
+			for(int i = 0; i < bubble_results.size(); i++){
+				for(int j = 0; j < bubble_results[i].size(); j++){
+					out += to_string(bubble_results[i][j]) + ",";
+					if(j != bubble_results[j].size()-1) out += ",";
+				}
+				if(i != bubble_results.size()-1) out += "\n";
+			}
+			file.open(parsed_string[2] + "bubble_sort.csv");
+			file << out;
+			file.close();
+			launch_python = "python3 graph.py";
+			launch_python += " 0";
+			launch_python += " " + parsed_string[2] + "bubble_sort.csv";
+			system(launch_python.c_str());
+			
+			out = "";
+			for(int i = 0; i < insertion_results.size(); i++){
+				for(int j = 0; j < insertion_results[i].size(); j++){
+					out += to_string(insertion_results[i][j]);
+					if(j != insertion_results[j].size()-1) out += ",";
+				}
+				if(i != insertion_results.size()-1) out += "\n";
+			}
+			file.open(parsed_string[2] + "insertion_sort.csv");
+			file << out;
+			file.close();
+			launch_python = "python3 graph.py";
+			launch_python += " 1";
+			launch_python += " " + parsed_string[2] + "insertion_sort.csv";
+			system(launch_python.c_str());
+
+			out = "";
+			for(int i = 0; i < selection_results.size(); i++){
+				for(int j = 0; j < selection_results[i].size(); j++){
+					out += to_string(selection_results[i][j]);
+					if(j != selection_results[j].size()-1) out += ",";
+				}
+				if(i != selection_results.size()-1) out += "\n";
+			}
+			file.open(parsed_string[2] + "selection_sort.csv");
+			file << out;
+			file.close();
+			launch_python = "python3 graph.py";
+			launch_python += " 2";
+			launch_python += " " + parsed_string[2] + "selection_sort.csv";
+			system(launch_python.c_str());
+
+			out = "";
+			for(int i = 0; i < shell_results.size(); i++){
+				for(int j = 0; j < shell_results[i].size(); j++){
+					out += to_string(shell_results[i][j]);
+					if(j != shell_results[j].size()-1) out += ",";
+				}
+				if(i != shell_results.size()-1) out += "\n";
+			}
+			file.open(parsed_string[2] + "shell_sort.csv");
+			file << out;
+			file.close();
+			launch_python = "python3 graph.py";
+			launch_python += " 3";
+			launch_python += " " + parsed_string[2] + "shell_sort.csv";
+			system(launch_python.c_str());
+
+			out = "";
+			for(int i = 0; i < merge_results.size(); i++){
+				for(int j = 0; j < merge_results[i].size(); j++){
+					out += to_string(merge_results[i][j]);
+					if(j != merge_results[j].size()-1) out += ",";
+				}
+				if(i != merge_results.size()-1) out += "\n";
+			}
+			file.open(parsed_string[2] + "merge_sort.csv");
+			file << out;
+			file.close();
+			launch_python = "python3 graph.py";
+			launch_python += " 4";
+			launch_python += " " + parsed_string[2] + "merge_sort.csv";
+			system(launch_python.c_str());
+
+			out = "";
+			for(int i = 0; i < quick_results.size(); i++){
+				for(int j = 0; j < quick_results[i].size(); j++){
+					out += to_string(quick_results[i][j]);
+					if(j != quick_results[j].size()-1) out += ",";
+				}
+				if(i != quick_results.size()-1) out += "\n";
+			}
+			file.open(parsed_string[2] + "quick_sort.csv");
+			file << out;
+			file.close();
+			launch_python = "python3 graph.py";
+			launch_python += " 5";
+			launch_python += " " + parsed_string[2] + "quick_sort.csv";
+			system(launch_python.c_str());
+
+			out = "";
+			for(int i = 0; i < radix_results.size(); i++){
+				for(int j = 0; j < radix_results[i].size(); j++){
+					out += to_string(radix_results[i][j]);
+					if(j != radix_results[j].size()-1) out += ",";
+				}
+				if(i != radix_results.size()-1) out += "\n";
+			}
+			file.open(parsed_string[2] + "radix_sort.csv");
+			file << out;
+			file.close();
+			launch_python = "python3 graph.py";
+			launch_python += " 6";
+			launch_python += " " + parsed_string[2] + "radix_sort.csv";
+			system(launch_python.c_str());
+			continue;
+		}
 		if(parsed_string[0] == "clear"){
 			system("clear");
 			continue;
