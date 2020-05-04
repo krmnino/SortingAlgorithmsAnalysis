@@ -17,7 +17,6 @@ std::vector<long long> shell_sort(std::vector<int> data){
     for(int i = 0; i < h-1; i++){
         gaps.push_back(pow(2, h - 1 - i) - 1);
     }
-    //Shell sort begin
     int swaps = 0;
     int comparisons = 0;
     int time = 0;

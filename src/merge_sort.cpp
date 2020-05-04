@@ -7,34 +7,27 @@
 
 static void
 msort(std::vector<int> &a, int temp[], int lo, int hi,std::vector<long long> &results) {
-  if (hi - lo < 2) return; //empty or single element
-  int mid = (lo + hi)/2;   //select midpoint
-  msort(a, temp, lo, mid,results); //mergesort lo half
-  msort(a, temp, mid, hi,results); //mergesort hi half
+  if (hi - lo < 2) return; 
+  int mid = (lo + hi)/2;   
+  msort(a, temp, lo, mid,results); 
+  msort(a, temp, mid, hi,results); 
   for (int i = lo; i < hi; ++i) {
-    //copy subarray to temp
     temp[i] = a[i];
   }
-  //merge temp[] subarrays back to a[]
-  int i1 = lo;
-  int i2 = mid;
+  int low = lo;
+  int mi = mid;
   for (int dest = lo; dest < hi; ++dest) {
-    if (i1 == mid) {
-      //left sublist exhausted
-      
-      a[dest] = temp[i2++];
+    if (low == mid) {
+      a[dest] = temp[mi++];
     }
-    else if (i2 == hi) {
-      //right sublist exhausted 
-      a[dest] = temp[i1++];
+    else if (mi == hi) {
+      a[dest] = temp[low++];
     }
-    else if (temp[i1] <= temp[i2]) {
-      //smaller value in i1
-      a[dest] = temp[i1++];
+    else if (temp[low] <= temp[mi]) {
+      a[dest] = temp[low++];
     }
     else {
-      //get smaller value from i2
-      a[dest] = temp[i2++];
+      a[dest] = temp[mi++];
     }
     results[1]++;
   }   
@@ -49,8 +42,6 @@ std::vector<long long> merge_sort(std::vector<int> data){
     int *temp = new int[data.size()];
     msort(data,temp,0,data.size(),results);
     delete temp;
-    //SORT HERE
-
     auto finish = std::chrono::system_clock::now();
 	std::chrono::duration<double> delta_time = finish - begin;
     //Time in milliseconds
