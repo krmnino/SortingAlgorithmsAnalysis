@@ -37,8 +37,6 @@ Graphical and terminal output (as shown above) was created. Using our output we 
     - Usage: save_res [SORT_RESULTS_FLAG] [FULL_DIRECTORY_PATH];
   - save_all_res - Save performance resuls of all algorithm given a directory path
     - Usage: save_res [FULL_DIRECTORY_PATH];
-  - delete_res - Deletes ALL performance results
-    - Usage: delete_res;
   - set_pathSet - directory path where the program will read/write datasets
     - Usage: set_path [FULL_DIRECTORY_PATH];
   - show_path - Show directory path where the program will read/write datasets
@@ -47,7 +45,8 @@ Graphical and terminal output (as shown above) was created. Using our output we 
     - Usage: help;
   - exit - Exit the program
     - Usage: exit;
-
+  - delete_res - Deletes ALL performance results
+    - Usage: delete_res;
 ## Participants
 - Ethan Breban 
 - Korhan Citlak 
