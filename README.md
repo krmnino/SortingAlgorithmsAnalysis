@@ -30,7 +30,9 @@ Graphical and terminal output (as shown above) was created. Using our output we 
 - step 3: enter commands as desired
 - Possible Commands (ALL COMMANDS MUST END WITH ";"):
   - generate - Generates dataset within a given range with random values
-    - run - Test all algorithms using generated datasets
+    - Usage: generate [lower_bound] [upper_bound] [increment_factor];
+  - run - Test all algorithms using generated datasets
+    - Usage: run;
   - show_res - Display performance resuls of a specific algorithm
     - Usage: show_res [SORT_RESULTS_FLAG];
   - save_res - Save performance resuls of a specific algorithm given a directory path
@@ -47,6 +49,11 @@ Graphical and terminal output (as shown above) was created. Using our output we 
     - Usage: exit;
   - delete_res - Deletes ALL performance results
     - Usage: delete_res;
+  - plot_res - Generate performance metrics graphs of a given sorting algoritihm in a specific location.
+    - Usage: plot_res [SORT_RESULTS_FLAG] [FULL_DIRECTORY_PATH];
+  - plot_all_res - 	Generate performance metrics graphs of all sorting algoritihms in a specific location.
+    - Usage: plot_all_res [FULL_DIRECTORY_PATH];
+					
 ## Participants
 - Ethan Breban 
 - Korhan Citlak 
