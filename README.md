@@ -6,7 +6,8 @@ The aim of this project is to use multiple sorting algorithms to test their perf
   - matplotlib & numpy
 
 ## Results:
- ![](/docs/Shell_sort_terminal.png).         ![](/docs/Quick_sort_terminal.png)
+ ![](/src/Shell_sort_terminal.png)        
+ ![](/docs/Quick_sort_terminal.png).
  ![](/docs/shell_sort_time_plot.png).        ![](/docs/quick_sort_time_plot.png)
  ![](/docs/shell_sort_swaps_comps_plot.png). ![](/docs/quick_sort_swaps_comps_plot.png)
 
