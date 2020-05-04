@@ -88,6 +88,10 @@ void command_line(){
 			cout << "					Usage: set_path [FULL_DIRECTORY_PATH];" << endl;
 			cout << "show_path			Show directory path where the program will read/write datasets" << endl;
 			cout << "					Usage: show_path;" << endl;
+            cout << "plot_res			Generate performance metrics graphs of a given sorting algoritihm in a specific location." << endl;
+			cout << "					Usage: plot_res [SORT_RESULTS_FLAG] [FULL_DIRECTORY_PATH];" << endl;
+            cout << "plot_all_res			Generate performance metrics graphs of all sorting algoritihms in a specific location." << endl;
+			cout << "					Usage: plot_all_res [FULL_DIRECTORY_PATH];" << endl;
 			cout << "help				Display program menu with command definitions." << endl; 
 			cout << "					Usage: help;" << endl;
 			cout << "exit				Exit the program." << endl;
