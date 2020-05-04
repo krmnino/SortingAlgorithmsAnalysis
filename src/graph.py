@@ -72,10 +72,6 @@ def plot_size_time(sort_algo, size, time, path):
     plt.savefig(path)
     print('Generated Size vs Time plot: ', path)
 
-
-#sort_algo = "1"
-#path = "/home/kurt/temporary/res/shell_sort.csv"
-
 warnings.filterwarnings('ignore')
 sort_algo = sys.argv[1]
 path = sys.argv[2]
