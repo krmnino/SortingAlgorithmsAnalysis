@@ -8,7 +8,7 @@ using namespace std;
 
 void random_number_file_generator(string path, unsigned long long lower_bound, unsigned long long upper_bound, int increment) {
 	while (lower_bound < upper_bound + 1) {
-		ofstream out_file(path + to_string(lower_bound) + ".dat");
+		ofstream out_file(path + "/" + to_string(lower_bound) + ".dat");
 		random_number_generator(out_file, lower_bound);
 		out_file.close();
 		lower_bound *= increment;
