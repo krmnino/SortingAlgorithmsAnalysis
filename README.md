@@ -5,13 +5,26 @@ The aim of this project is to use multiple sorting algorithms to test their perf
 - Python3
   - matplotlib & numpy
 
-## Results:
+## Results: These are example outputs for two of the implemented algoritghms.
  ![](/docs/Shell_sort_terminal.png).         ![](/docs/Quick_sort_terminal.png).
  ![](/docs/shell_sort_time_plot.png).        ![](/docs/quick_sort_time_plot.png)
  ![](/docs/shell_sort_swaps_comps_plot.png). ![](/docs/quick_sort_swaps_comps_plot.png)
 
+Best Sorting Algorithm for Small School (<3000):
+- 
+Best Sorting Algorithm for Medium School (3000< x <20000):
+-
+Best Sorting Algorithm for Large School (>20000):
+-
 ## Results explanation:
-  [Insert Explanation]
+  For all seven sorting algorithms we implemented:
+  - Bubble sort
+  - Insertion sort
+  - Selection sort
+  - Merge sort
+  - Quick sort
+  - Radix sort
+graphical and terminal output (as shown above) was created. Using our output we have determined which sorting algorithms are best for universities of different sizes. The time v size graph shows which sorting algorithm does best with more data and which algorithms efficiency slows as data size increases. The size v swaps & comparisons graph shows how many more computations an algorithm has to do as size increases.
 ## How to Execute Program
 - step 1: make
 - step 2: in command line type ./data-sorting
