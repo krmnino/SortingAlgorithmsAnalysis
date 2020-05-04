@@ -10,12 +10,9 @@ The aim of this project is to use multiple sorting algorithms to test their perf
  ![](/docs/shell_sort_time_plot.png).        ![](/docs/quick_sort_time_plot.png)
  ![](/docs/shell_sort_swaps_comps_plot.png). ![](/docs/quick_sort_swaps_comps_plot.png)
 
-Best Sorting Algorithm for Small School (<3000):
-- 
-Best Sorting Algorithm for Medium School (3000< x <20000):
--
-Best Sorting Algorithm for Large School (>20000):
--
+Best Sorting Algorithm(s) for Universities to Use:
+- It became apparent that quicksort and mergesort were the quickest and the most effiecient algorithms.
+
 ## Results explanation:
   For all seven sorting algorithms we implemented:
   - Bubble sort
