@@ -11,6 +11,7 @@ void random_number_file_generator(string path, unsigned long long lower_bound, u
 		ofstream out_file(path + "/" + to_string(lower_bound) + ".dat");
 		random_number_generator(out_file, lower_bound);
 		out_file.close();
+		cout << "Generated random dataset in: " + path + "/" + to_string(lower_bound) + ".dat" << endl;
 		lower_bound *= increment;
 	}
 }
