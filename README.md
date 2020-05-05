@@ -39,7 +39,7 @@ Graphical and terminal output (as shown above) was created. Using our output we 
     - Usage: save_res [SORT_RESULTS_FLAG] [FULL_DIRECTORY_PATH];
   - save_all_res - Save performance resuls of all algorithm given a directory path
     - Usage: save_res [FULL_DIRECTORY_PATH];
-  - set_pathSet - directory path where the program will read/write datasets
+  - set_path - Set directory path where the program will read/write datasets
     - Usage: set_path [FULL_DIRECTORY_PATH];
   - show_path - Show directory path where the program will read/write datasets
     - Usage: show_path;
