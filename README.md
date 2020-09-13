@@ -1,4 +1,12 @@
-# CS240A Group Project
+# Sorting Algorithms Performance Analysis
+
+Group project for CS240 Data Structures and Algorithms class.
+
+## Contributors
+- Ethan Breban 
+- Korhan Citlak 
+- Kurt Manrique-Niño
+
 ### Requirements
 The aim of this project is to use multiple sorting algorithms to test their performance using datasets of different sizes. Datasets are generated using a script and stored in a text file, one data point per line. We will evaluate the number of comparisons, swap, and execution time between algorithms when sorting datasets. An application for this project is universities attempting to determine class rankings and other statistics used to differentiate students. Our program clearly shows which sorting algorithm is best for unviresities of different sizes.
 - C++ 17
@@ -53,8 +61,3 @@ Graphical and terminal output (as shown above) was created. Using our output we 
     - Usage: plot_res [SORT_RESULTS_FLAG] [FULL_DIRECTORY_PATH];
   - plot_all_res - 	Generate performance metrics graphs of all sorting algoritihms in a specific location.
     - Usage: plot_all_res [FULL_DIRECTORY_PATH];
-					
-## Participants
-- Ethan Breban 
-- Korhan Citlak 
-- Kurt Manrique-Niño
